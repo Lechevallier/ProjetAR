@@ -1,0 +1,32 @@
+<template name="coursesTables">
+	{{#each course}}
+		<li class='course'>
+			<b>{{name}}</b> created by {{DisplayAuthor author}} at {{DisplayDate createdAt}}, <small><i>{{listener}} collaborators</i></small> {{slides}}
+			
+			{{#if mouseOnDelete}} 
+				<a id="remove" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-trash"></span> </a>
+			{{/if}}
+			{{#if mouseOnJoin}}
+				{{#if currentUser}}
+					<a href="{{pathFor 'reveal'}}" id="join" class="btn btn-xs btn-primary"> <span class="glyphicon glyphicon-pencil"></span></a>
+				{{/if}}
+			{{/if}}
+		</li>
+	{{/each}}
+</template>
+
+<template name="addCourseForm">
+	<div id="formulaire">
+		{{#if currentUser}}
+			<form class="form-inline">
+			  <div class="form-group has-success has-feedback">
+			    <input type="text" class="form-control" id="inputSuccess4" aria-describedby="inputSuccess4Status" placeholder="Course Name" name="courseName">
+			    <span id="inputSuccess4Status" class="sr-only">(success)</span>
+			    <span id="helpBlock2" class="help-block">Select or create a new course to contribute</span>
+			  </div>
+			</form>
+		{{else}}
+			<div>Please log in</div>
+		{{/if}}
+	</div>
+</template>
